@@ -54,6 +54,22 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.delete("/:id", validUser, async (req, res) => {
+  try {
+    let meme = await Meme.findOne({_id: req.params.id});
+    if (!meme) {
+      res.send(404);
+      return;
+    }
+    await Comment.deleteMany({
+      meme: meme
+    });
+    res.sendStatus(200);
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
+
 module.exports = {
   model: Comment,
   routes: router,

@@ -115,6 +115,13 @@ router.put("/:id", validUser, async (req, res) => {
   try {
     let meme = await Meme.findOne({_id: req.params.id});
     meme.title = req.body.title;
+    meme.tag1 = req.body.tag1;
+    meme.tag2 = req.body.tag2;
+    meme.tag3 = req.body.tag3;
+    meme.tag4 = req.body.tag4;
+    meme.tag5 = req.body.tag5;
+    meme.tag6 = req.body.tag6;
+    meme.tag7 = req.body.tag7;
     meme.save();
     res.sendStatus(200);
   } catch (error) {
