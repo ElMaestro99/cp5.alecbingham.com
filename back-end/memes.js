@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const express = require("express");
 const router = express.Router();
 
-// Configure multer so that it will upload to '../front-end/public/images'
 const multer = require('multer')
 const upload = multer({
   dest: '../front-end/public/images/',
@@ -15,14 +14,13 @@ const users = require("./users.js");
 const User = users.model;
 const validUser = users.valid;
 
-// Create a scheme for memes
 const memeSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
-  title: String,
   path: String,
+  title: String,
   tag1: Boolean,
   tag2: Boolean,
   tag3: Boolean,
@@ -36,12 +34,10 @@ const memeSchema = new mongoose.Schema({
   },
 });
 
-// Create a model for memes
 const Meme = mongoose.model('Meme', memeSchema);
 
-// Create a meme
-router.post('/', validUser, upload.single('photo'), async (req, res) => {
-  // check parameters
+// upload meme
+router.post("/", validUser, upload.single('meme'), async (req, res) => {
   if (!req.file)
     return res.status(400).send({
       message: "Must upload a file."
@@ -49,8 +45,8 @@ router.post('/', validUser, upload.single('photo'), async (req, res) => {
 
   const meme = new Meme({
     user: req.user,
-    title: req.body.title,
     path: "/images/" + req.file.filename,
+    title: req.body.title,
     tag1: req.body.tag1,
     tag2: req.body.tag2,
     tag3: req.body.tag3,
@@ -61,49 +57,67 @@ router.post('/', validUser, upload.single('photo'), async (req, res) => {
   });
   try {
     await meme.save();
-    res.send(meme);
-    //return res.sendStatus(200);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
-});
-
-//get my memes
-router.get("/", validUser, async (req, res) => {
-  try {
-    let memes = await Meme.find({
-      user: req.user
-    }).sort({
-      created: -1
-    }).populate('user');
-    return res.send(memes);
+    return res.sendStatus(200);
   } catch (error) {
     return res.sendStatus(500);
   }
 });
 
-// Get a list of all memes
-router.get('/all', async (req, res) => {
+// get the memes of a user
+router.get("/", validUser, async (req, res) => {
   try {
-    let memes = await Meme.find().sort({
+    let photos = await Meme.find({
+      user: req.user
+    }).sort({
       created: -1
-    });
-    res.send(memes);
+    }).populate('user');
+    return res.send(photos);
   } catch (error) {
-    console.log(error);
+    return res.sendStatus(500);
+  }
+});
+
+// get all memes for public view
+router.get("/all", async (req, res) => {
+  try {
+    let photos = await Meme.find().sort({
+      created: -1
+    }).populate('user');
+    return res.send(photos);
+  } catch (error) {
+    return res.sendStatus(500);
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    let photo = await Meme.findOne({
+      _id: req.params.id
+    }).populate('user');
+    res.send(photo);
+  } catch (error) {
     res.sendStatus(500);
   }
 });
 
-router.delete('/:id', validUser, async (req, res) => {
+router.delete("/:id", validUser, async (req, res) => {
   try {
     await Meme.deleteOne({
       _id: req.params.id
     });
     res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.put("/:id", validUser, async (req, res) => {
+  try {
+    let meme = await Meme.findOne({_id: req.params.id});
+    meme.title = req.body.title;
+    meme.save();
+    res.sendStatus(200);
+  } catch (error) {
     res.sendStatus(500);
   }
 });

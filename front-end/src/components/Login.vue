@@ -1,10 +1,12 @@
 <template>
-  <div class="loginCon">
+<div class="hero">
+  <div class="heroBox">
     <form class="pure-form">
       <fieldset>
         <legend>Register for an account</legend>
         <input placeholder="first name" v-model="firstName">
         <input placeholder="last name" v-model="lastName">
+        <input placeholder="email" v-model="email">
       </fieldset>
       <fieldset>
         <input placeholder="username" v-model="username">
@@ -27,16 +29,18 @@
     </form>
     <p v-if="errorLogin" class="error">{{errorLogin}}</p>
   </div>
+</div>
 </template>
 
 <script>
 import axios from 'axios';
 export default {
-  name: 'Login',
+  name: 'HomePage',
   data() {
     return {
       firstName: '',
       lastName: '',
+      email: '',
       username: '',
       password: '',
       usernameLogin: '',
@@ -49,7 +53,7 @@ export default {
    async register() {
      this.error = '';
      this.errorLogin = '';
-     if (!this.firstName || !this.lastName || !this.username || !this.password)
+     if (!this.firstName || !this.lastName || !this.username || !this.password || !this.email)
        return;
      try {
        let response = await axios.post('/api/users', {
@@ -57,6 +61,7 @@ export default {
          lastName: this.lastName,
          username: this.username,
          password: this.password,
+         email: this.email,
        });
        this.$root.$data.user = response.data.user;
      } catch (error) {
@@ -83,3 +88,46 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.space-above {
+  margin-top: 50px;
+}
+
+h1 {
+  font-size: 28px;
+  font-variant: capitalize;
+}
+
+.hero {
+  padding: 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.heroBox {
+  text-align: center;
+}
+
+.hero form {
+  font-size: 14px;
+}
+
+.hero form legend {
+  font-size: 20px;
+}
+
+input {
+  margin-right: 10px;
+}
+
+.error {
+  margin-top: 10px;
+  display: inline;
+  padding: 5px 20px;
+  border-radius: 30px;
+  font-size: 10px;
+  background-color: #d9534f;
+  color: #fff;
+}
+</style>

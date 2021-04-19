@@ -1,10 +1,24 @@
-This is the front end for the Todo List app. See the tutorials for how it
-is built.
+# front-end
 
-You can run this code with:
-
+## Project setup
 ```
-cd front-end
 npm install
+```
+
+### Compiles and hot-reloads for development
+```
 npm run serve
 ```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

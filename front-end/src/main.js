@@ -9,6 +9,7 @@ let data = {
 }
 
 new Vue({
+  data,
   router,
   render: h => h(App)
 }).$mount('#app')

@@ -28,7 +28,7 @@ const commentSchema = new mongoose.Schema({
 const Comment = mongoose.model('Comment', commentSchema);
 
 router.post("/", validUser, async (req, res) => {
-  const comment = new Comment({
+    const comment = new Comment({
     user: req.body.user,
     meme: req.body.meme,
     text: req.body.text,
@@ -44,30 +44,13 @@ router.post("/", validUser, async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     let comments = await Comment.find({
-      meme: req.params.id
+      photo: req.params.id
     }).sort({
       created: -1
     }).populate('user');
     return res.send(comments);
   } catch (error) {
     return res.sendStatus(500);
-  }
-});
-
-router.delete('/:id', validUser, async (req, res) => {
-  try {
-    let meme = await Meme.findOne({_id: req.params.id});
-    if (!meme) {
-        res.send(404);
-        return;
-    }
-    await Comment.deleteMany({
-      meme: meme
-    });
-    res.sendStatus(200);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
   }
 });
 

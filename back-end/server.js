@@ -1,21 +1,20 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 
+// setup express
 const app = express();
 
-// parse application/x-www-form-urlencoded
+// setup body parser middleware to conver to JSON and handle URL encoded forms
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-// parse application/json
-app.use(bodyParser.json());
-
-// connect to the database
+// connect to the mongodb database
 mongoose.connect('mongodb://localhost:27017/cp5', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useNewUrlParser: true
 });
 
 const cookieParser = require("cookie-parser");
@@ -36,8 +35,8 @@ app.use(cookieSession({
 const users = require("./users.js");
 app.use("/api/users", users.routes);
 
-const memes = require("./memes.js");
-app.use("/api/memes", memes.routes);
+const photos = require("./memes.js");
+app.use("/api/memes", photos.routes);
 
 const comments = require("./comments.js");
 app.use("/api/comments", comments.routes);

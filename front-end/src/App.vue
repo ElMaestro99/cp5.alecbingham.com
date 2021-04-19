@@ -1,23 +1,21 @@
 <template>
-<div id="app">
+  <div id="app">
+    <header id="header">
+      <router-link to="/">
+        <div class="title">
+          <h1>Memes R Us</h1>
+        </div>
+      </router-link>
+      <router-link to="/dashboard">User Dashboard</router-link>
+    </header>
+    <div class="content">
+      <router-view />
+    </div>
+    <div class="footer">
+      <a id="gitLink" href="https://github.com/ElMaestro99/cp4.alecbingham.com.git">GitHub</a>
+    </div>
 
-  <div class="header">
-    <router-link to="/">
-      <div class="title">
-        <h1>Memes R Us</h1>
-      </div>
-    </router-link>
   </div>
-
-  <div class="content">
-    <router-view />
-  </div>
-  <div class="footer">
-    <router-link to="/admin">Admin</router-link>
-    <a id="gitLink" href="https://github.com/ElMaestro99/cp4.alecbingham.com.git">GitHub</a>
-  </div>
-
-</div>
 </template>
 
 <style>
@@ -61,7 +59,7 @@ body {
 
 .content {
   padding: 20px 20px;
-  min-height: 500px;
+  min-height: 700px;
 }
 
 /* Footer */

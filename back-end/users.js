@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
   lastName: String,
   username: String,
   password: String,
+  email: String,
 });
 
 // This is a hook that will be called before a user record is saved,
@@ -104,9 +105,9 @@ router.post('/', async (req, res) => {
   // Make sure that the form coming from the browser includes all required fields,
   // otherwise return an error. A 400 error means the request was
   // malformed.
-  if (!req.body.firstName || !req.body.lastName || !req.body.username || !req.body.password)
+  if (!req.body.firstName || !req.body.lastName || !req.body.username || !req.body.password || !req.body.email)
     return res.status(400).send({
-      message: "first name, last name, username and password are required"
+      message: "first name, last name, email, username and password are required"
     });
 
   try {
@@ -126,7 +127,8 @@ router.post('/', async (req, res) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      email: req.body.email,
     });
     await user.save();
     // set user session info
