@@ -1,5 +1,6 @@
 <template>
 <div class="main">
+  <h1 id="welcome">Welcome {{this.$root.$data.user.firstName}} {{this.$root.$data.user.lastName}}!</h1>
   <div class="menu">
     <button><a @click="toggleUpload">Upload</a></button>
     <router-link to="/edit"><button>Edit/Delete</button></router-link>
@@ -72,6 +73,11 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+}
+
+#welcome {
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .menu h2 {

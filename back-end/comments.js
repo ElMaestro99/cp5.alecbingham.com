@@ -44,7 +44,7 @@ router.post("/", validUser, async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     let comments = await Comment.find({
-      photo: req.params.id
+      meme: req.params.id
     }).sort({
       created: -1
     }).populate('user');
@@ -56,13 +56,13 @@ router.get("/:id", async (req, res) => {
 
 router.delete("/:id", validUser, async (req, res) => {
   try {
-    let meme = await Meme.findOne({_id: req.params.id});
-    if (!meme) {
-      res.send(404);
-      return;
-    }
+    //let meme = await Meme.findOne({_id: req.params.id});
+    //if (!meme) {
+      //res.sendStatus(404);
+      //return;
+    //}
     await Comment.deleteMany({
-      meme: meme
+      meme: req.params.id
     });
     res.sendStatus(200);
   } catch (error) {

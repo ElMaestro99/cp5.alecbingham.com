@@ -1,17 +1,15 @@
 <template>
   <div class="photoPage">
-    <h1>Photo Page</h1>
-    <div class="bigContainer" v-if="photo">
+    <div class="bigContainer" v-if="meme">
       <div class="info">
-        <h3>{{photo.title}}</h3>
-        <img class="currentPhoto" :src="photo.path"/>
+        <h3>{{meme.title}}</h3>
+        <img class="currentPhoto" :src="meme.path"/>
         <div class="belowPhoto">
-          <h4>{{formatDate(photo.created)}}</h4>
-          <h4>{{photo.user.firstName}} {{photo.user.lastName}}</h4>
+          <h4>{{formatDate(meme.created)}}</h4>
+          <h4>{{meme.user.firstName}} {{meme.user.lastName}}</h4>
         </div>
       </div>
       <div class="description">
-        <h3>{{photo.description}}</h3>
         <div class="comContainer" v-for="comment in comments" v-bind:key="comment._id">
           <p>{{comment.text}}</p>
           <p class="commentDetails"><em>-{{comment.user.firstName}} {{comment.user.lastName}}</em> {{formatDate(comment.created)}}</p>
@@ -38,7 +36,7 @@
     name: 'Photo',
     data() {
       return {
-        photo: null,
+        meme: null,
         comments: [],
         newText: '',
         error: '',
@@ -46,7 +44,6 @@
     },
     async created() {
       await this.getPhoto();
-      console.log(this.photo);
       await this.getComments();
       try {
         let response = await axios.get('/api/users');
@@ -64,14 +61,14 @@
       async getPhoto() {
         try {
           let response = await axios.get("/api/memes/" + this.$route.params.id);
-          this.photo = response.data;
+          this.meme = response.data;
         } catch (error) {
           this.error = error.response.data.message;
         }
       },
       async getComments() {
         try {
-          let response = await axios.get("/api/comments/" + this.photo._id);
+          let response = await axios.get("/api/comments/" + this.meme._id);
           this.comments = response.data;
         } catch (error) {
           this.error = error.response.data.message;
@@ -80,8 +77,8 @@
       async addComment() {
         try {
           await axios.post('/api/comments/', {
-            user: this.photo.user,
-            photo: this.photo,
+            user: this.$root.$data.user,
+            meme: this.meme,
             text: this.newText,
           });
           this.text = "";
