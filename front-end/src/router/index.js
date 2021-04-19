@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Photo from '../views/Photo.vue'
+import Edit from '../views/Edit.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/photo/:id',
     name: 'Photo',
     component: Photo
+  },
+  {
+    path: '/edit',
+    name: 'Edit',
+    component: Edit
   },
 ]
 

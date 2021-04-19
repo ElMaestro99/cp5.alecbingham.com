@@ -1,8 +1,9 @@
 <template>
 <div class="main">
   <div class="menu">
-    <p><a @click="toggleUpload"><i class="fas fa-image"></i></a></p>
-    <h2>{{user.firstName}} {{user.lastName}} <a @click="logout"><i class="fas fa-sign-out-alt"></i></a></h2>
+    <button><a @click="toggleUpload">Upload</a></button>
+    <router-link to="/edit"><button>Edit/Delete</button></router-link>
+    <button><a @click="logout">Logout</a></button>
     <uploader :show="show" @close="close" @uploadFinished="uploadFinished" />
   </div>
   <image-gallery :photos="photos" />
@@ -70,6 +71,7 @@ export default {
 .menu {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 25px;
 }
 
 .menu h2 {

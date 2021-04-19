@@ -9,20 +9,34 @@
         </fieldset>
         <fieldset>
           <div class="tagHolder">
-            <input type="checkbox" v-model="tag1" id="tag1" name="tag1" value="Textpost">
-            <label for="tag1">Textpost</label><br>
-            <input type="checkbox" v-model="tag2" id="tag2" name="tag2" value="Punny">
-            <label for="tag2">Punny</label><br>
-            <input type="checkbox" v-model="tag3" id="tag3" name="tag3" value="Starwars">
-            <label for="tag3">Star Wars</label><br>
-            <input type="checkbox" v-model="tag4" id="tag4" name="tag4" value="CurrentEvents">
-            <label for="tag4">Current Events</label><br>
-            <input type="checkbox" v-model="tag5" id="tag5" name="tag5" value="Classics">
-            <label for="tag5">Classics</label><br>
-            <input type="checkbox" v-model="tag6" id="tag6" name="tag6" value="Wholesome">
-            <label for="tag6">Wholesome</label><br>
-            <input type="checkbox" v-model="tag7" id="tag7" name="tag7" value="Others">
-            <label for="tag7">Other</label><br>
+            <div class="tagRow">
+              <label for="tag1">Textpost</label>
+              <input type="checkbox" v-model="tag1" id="tag1" name="tag1" value="Textpost">
+            </div>
+            <div class="tagRow">
+              <label for="tag2">Punny</label>
+              <input type="checkbox" v-model="tag2" id="tag2" name="tag2" value="Punny">
+            </div>
+            <div class="tagRow">
+              <label for="tag3">Star Wars</label>
+              <input type="checkbox" v-model="tag3" id="tag3" name="tag3" value="Starwars">
+            </div>
+            <div class="tagRow">
+              <label for="tag4">Current Events</label>
+              <input type="checkbox" v-model="tag4" id="tag4" name="tag4" value="CurrentEvents">
+            </div>
+            <div class="tagRow">
+              <label for="tag5">Classics</label>
+              <input type="checkbox" v-model="tag5" id="tag5" name="tag5" value="Classics">
+            </div>
+            <div class="tagRow">
+              <label for="tag6">Wholesome</label>
+              <input type="checkbox" v-model="tag6" id="tag6" name="tag6" value="Wholesome">
+            </div>
+            <div class="tagRow">
+              <label for="tag7">Other</label>
+              <input type="checkbox" v-model="tag7" id="tag7" name="tag7" value="Others">
+            </div>
           </div>
         </fieldset>
         <fieldset>
@@ -118,7 +132,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: inherit;
+  height: 100%;
   background-color: rgba(0, 0, 0, .3);
   transition: opacity 0.5s ease;
   display: flex;
@@ -164,8 +178,41 @@ export default {
 
 .tagHolder {
   display: flex;
+  flex-direction: column;
+}
+
+.tagRow {
+  display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#tag1 {
+  width: 20px;
+}
+
+#tag2 {
+  width: 20px;
+}
+
+#tag3 {
+  width: 20px;
+}
+
+#tag4 {
+  width: 20px;
+}
+
+#tag5 {
+  width: 20px;
+}
+
+#tag6 {
+  width: 20px;
+}
+
+#tag7 {
+  width: 20px;
 }
 
 /* Form */

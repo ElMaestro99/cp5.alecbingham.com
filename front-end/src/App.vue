@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <header id="header">
-      <router-link to="/">
+    <div class="header">
         <div class="title">
           <h1>Memes R Us</h1>
         </div>
-      </router-link>
-      <router-link to="/dashboard">User Dashboard</router-link>
-    </header>
+      <div class="dashLink">
+        <router-link to="/">
+          <h2>Home</h2>
+        </router-link>
+        <router-link to="/dashboard">
+          <h2>My Profile</h2>
+        </router-link>
+      </div>
+    </div>
     <div class="content">
       <router-view />
     </div>
@@ -35,9 +40,15 @@ body {
 .header {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   padding: 10px 100px 0px 100px;
   background-color: #4D85A8;
   color: #E9fff9;
+}
+
+.dashLink {
+  display: flex;
+  justify-content: space-around;
 }
 
 body {
@@ -51,6 +62,8 @@ body {
 
 .title {
   margin-top: 5px;
+  display: flex;
+  justify-content: center;
 }
 
 .title h1 {
