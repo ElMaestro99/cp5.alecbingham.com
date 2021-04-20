@@ -17,7 +17,8 @@
       <router-view />
     </div>
     <div class="footer">
-      <a id="gitLink" href="https://github.com/ElMaestro99/cp4.alecbingham.com.git">GitHub</a>
+      <a id="gitLink" href="https://github.com/ElMaestro99/cp5.alecbingham.com.git">GitHub</a>
+      <a>Hours Spent: 8</a>
     </div>
 
   </div>
@@ -64,6 +65,7 @@ body {
   margin-top: 5px;
   display: flex;
   justify-content: center;
+  color: #850A21;
 }
 
 .title h1 {
