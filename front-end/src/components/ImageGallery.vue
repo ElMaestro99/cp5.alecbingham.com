@@ -3,7 +3,7 @@
   <section class="image-gallery">
     <div class="image" v-for="photo in photos" v-bind:key="photo._id">
       <p class="photoTitle">{{photo.title}}</p>
-      <router-link :to="{ name: 'Photo', params: { id: photo._id }}"><img :src="photo.path" /></router-link>
+      <router-link :to="{ name: 'SingleMeme', params: { id: photo._id }}"><img :src="photo.path" /></router-link>
     </div>
   </section>
 </div>

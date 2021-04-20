@@ -1,5 +1,5 @@
 <template>
-  <div class="photoPage">
+  <div class="singleMemePage">
     <div class="bigContainer" v-if="meme">
       <div class="info">
         <h3>{{meme.title}}</h3>
@@ -101,6 +101,7 @@
   .bigContainer {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 75px;
     justify-content: space-around;
     width: 100%;
@@ -113,6 +114,8 @@
   .info {
     display: flex;
     max-width: 40%;
+    min-width: 400px;
+    margin-bottom: 30px;
     flex-direction: column;
     justify-content: center;
   }
@@ -126,6 +129,9 @@
 
   .comContainer {
     border: solid black 1px;
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 10px;
   }
 
   .commentDetails {
@@ -136,6 +142,7 @@
   .description {
     display: flex;
     max-width: 40%;
+    min-width: 400px;
     flex-direction: column;
     justify-content: center;
   }

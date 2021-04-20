@@ -189,6 +189,7 @@ button {
   flex-direction: column;
   margin-left: 15px;
   margin-right: 15px;
+  margin-bottom: 30px;
 }
 
 .upload h2 {
@@ -220,7 +221,9 @@ button {
 /* Suggestions */
 .suggestions {
   width: 200px;
+  background-color: white;
   border: 1px solid #ccc;
+  margin-bottom: 30px;
 }
 
 .suggestion {

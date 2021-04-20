@@ -1,18 +1,18 @@
 <template>
 <div class="dashboard">
-  <MyPhotos v-if="user" />
+  <UserMemes v-if="user" />
   <Login v-else />
 </div>
 </template>
 
 <script>
-import MyPhotos from '@/components/MyPhotos.vue';
+import UserMemes from '@/components/UserMemes.vue';
 import Login from '@/components/Login.vue';
 import axios from 'axios';
 export default {
   name: 'dashboard',
   components: {
-    MyPhotos,
+    UserMemes,
     Login,
   },
   async created() {

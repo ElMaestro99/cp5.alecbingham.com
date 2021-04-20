@@ -66,6 +66,7 @@ export default {
 
 .tagContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
